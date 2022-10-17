@@ -1,0 +1,65 @@
+@startuml Architecture Overview
+
+
+package Application {
+    class BMS
+}
+
+package Service {
+    class LTC6802
+    class SPI_BUS
+    class CAN_BUS
+    class Board
+}
+
+package Drivers {
+    class CAN_Driver {
+        + bool init()
+        + struct CAN_INTERFACE{CAN0, CAN1}
+        + struct CAN_MESSAGE{ID, EXT, RTR, DLC, DATA}
+        + bool sendMessage(CAN_INTERFACE, CAN_MESSAGE)
+    }
+    class SPI_Driver
+    class GPIO_Driver
+}
+
+package HAL {
+    class can {
+        + CAN_HandleTypeDef hcan1
+        + CAN_HandleTypeDef hcan2
+        + void MX_CAN1_Init()
+        + void MX_CAN2_Init()
+    }
+
+    class stm32f4xx_hal_can {
+        + HAL_CAN_Init()
+        + HAL_CAN_Start()
+        + HAL_CAN_AddTxMessage()
+        + HAL_CAN_GetTxMailboxesFreeLevel()
+        + HAL_CAN_IsTxMessagePending()
+        + HAL_CAN_GetRxMessage()
+        + HAL_CAN_GetRxFifoFillLevel()
+        + HAL_CAN_Stop()
+    }
+
+    class gpio
+    class spi
+}
+
+BMS --> CAN_BUS
+CAN_BUS --> CAN_Driver
+CAN_Driver --> can
+can --> stm32f4xx_hal_can
+
+BMS --> LTC6802
+LTC6802 --> SPI_BUS
+SPI_BUS --> SPI_Driver
+SPI_Driver --> spi
+
+BMS --> Board
+Board --> GPIO_Driver
+GPIO_Driver --> gpio
+
+
+
+@enduml
