@@ -114,47 +114,42 @@ void HAL_TestBench::toggleGPIO(uint8_t gpio)
 
 bool HAL_TestBench::getGPIO(uint8_t gpio, GPIO_TypeDef **pinPort, uint16_t &pinNumber)
 {
-    bool isSuccess = false;
+    bool isSuccess = true;
 
     switch (gpio)
     {
     case GPIO::BMS_OK:
         *pinPort = BMS_OK_GPIO_Port;
         pinNumber = BMS_OK_Pin;
-        isSuccess = true;
         break;
 
     case GPIO::SPI_CS_1:
         *pinPort = NSS_1_GPIO_Port;
         pinNumber = NSS_1_Pin;
-        isSuccess = true;
         break;
 
     case GPIO::SPI_CS_2:
         *pinPort = NSS_2_GPIO_Port;
         pinNumber = NSS_2_Pin;
-        isSuccess = true;
         break;
 
     case GPIO::LED_RED:
         *pinPort = LED_Red_GPIO_Port;
         pinNumber = LED_Red_Pin;
-        isSuccess = true;
         break;
 
     case GPIO::LED_BLUE:
         *pinPort = LED_Blue_GPIO_Port;
         pinNumber = LED_Blue_Pin;
-        isSuccess = true;
         break;
 
     case GPIO::LED_GREEN:
         *pinPort = LED_Green_GPIO_Port;
         pinNumber = LED_Green_Pin;
-        isSuccess = true;
         break;
 
     default:
+        isSuccess = false;
         break;
     }
 
