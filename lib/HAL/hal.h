@@ -72,11 +72,6 @@ public:
     virtual bool init() = 0;
 
     /**
-     *  Delay in milliseconds.
-     */
-    virtual void delay(uint32_t delay) = 0;
-
-    /**
      *  Set a GPIO
      *  @param gpio GPIO Number.
      */

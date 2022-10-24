@@ -234,7 +234,7 @@ void LoopTask(void *argument)
   {
     // HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_2);
     gHal.toggleGPIO(HAL_TestBench::GPIO::LED_GREEN);
-    gHal.delay(1000);
+    osDelay(1000);
   }
   /* USER CODE END LoopTask */
 }

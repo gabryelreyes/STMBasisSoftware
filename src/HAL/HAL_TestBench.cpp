@@ -34,7 +34,6 @@ SOFTWARE.
  * Includes
  *****************************************************************************/
 #include "HAL_TestBench.h"
-#include "os.h"
 
 /******************************************************************************
  * Macros
@@ -93,11 +92,6 @@ bool HAL_TestBench::init()
     initBoardGpio();
 
     return isSuccess;
-}
-
-void HAL_TestBench::delay(uint32_t delay)
-{
-    osDelay(delay);
 }
 
 void HAL_TestBench::setGPIO(uint8_t gpio)
