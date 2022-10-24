@@ -75,15 +75,13 @@ extern "C" {
 #endif /* __cplusplus */
 
 /* Function prototypes -------------------------------------------------------*/
-void Error_Handler(void);
 
 /* Public macros -------------------------------------------------------------*/
 /** Blocks execution */
 #define STM32_LOCK_BLOCK()                      \
   do                                            \
   {                                             \
-    __disable_irq();                            \
-    Error_Handler();                            \
+    __disable_irq();                           \
     while (1);                                  \
   } while (0)
 
