@@ -42,20 +42,6 @@ SOFTWARE.
 /******************************************************************************
  * Macros
  *****************************************************************************/
-#define LED_Blue_Pin GPIO_PIN_2
-#define LED_Blue_GPIO_Port GPIOE
-#define NSS_1_Pin GPIO_PIN_4
-#define NSS_1_GPIO_Port GPIOA
-#define BMS_OK_Pin GPIO_PIN_15
-#define BMS_OK_GPIO_Port GPIOE
-#define Fan_Control_Pin GPIO_PIN_0
-#define Fan_Control_GPIO_Port GPIOD
-#define NSS_2_Pin GPIO_PIN_9
-#define NSS_2_GPIO_Port GPIOB
-#define LED_Red_Pin GPIO_PIN_0
-#define LED_Red_GPIO_Port GPIOE
-#define LED_Green_Pin GPIO_PIN_1
-#define LED_Green_GPIO_Port GPIOE
 
 /******************************************************************************
  * Types and Classes

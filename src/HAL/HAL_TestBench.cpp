@@ -39,6 +39,30 @@ SOFTWARE.
  * Macros
  *****************************************************************************/
 
+// BMS_OK
+#define BMS_OK_GPIO_Port GPIOE
+#define BMS_OK_Pin GPIO_PIN_15
+
+// SPI_CS_1
+#define NSS_1_GPIO_Port GPIOA
+#define NSS_1_Pin GPIO_PIN_4
+
+// SPI_CS_2
+#define NSS_2_GPIO_Port GPIOB
+#define NSS_2_Pin GPIO_PIN_9
+
+// LED Red
+#define LED_Red_GPIO_Port GPIOE
+#define LED_Red_Pin GPIO_PIN_0
+
+// LED Blue
+#define LED_Blue_GPIO_Port GPIOE
+#define LED_Blue_Pin GPIO_PIN_2
+
+// LED Green
+#define LED_Green_GPIO_Port GPIOE
+#define LED_Green_Pin GPIO_PIN_1
+
 /******************************************************************************
  * Prototypes
  *****************************************************************************/
