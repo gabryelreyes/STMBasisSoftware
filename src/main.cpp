@@ -293,7 +293,13 @@ int main(void)
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
-  gHal.init();
+  if (false == gHal.init())
+  {
+    while (1)
+    {
+      // Error initializing HAL
+    }
+  }
 
   /* USER CODE BEGIN 2 */
 

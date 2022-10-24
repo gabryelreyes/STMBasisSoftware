@@ -45,20 +45,14 @@ SOFTWARE.
  *****************************************************************************/
 
 /**
- * @brief System Clock Configuration
- * @retval None
+ *  @brief System Clock Configuration
+ *  @retval None
  */
-void SystemClock_Config(void);
+bool SystemClock_Config(void);
 
-/** Configure pins as
-        * Analog
-        * Input
-        * Output
-        * EVENT_OUT
-        * EXTI
-        * Free pins are configured automatically as Analog (this feature is enabled through
-        * the Code Generation settings)
-*/
+/** 
+ *  Configure GPIO Pins
+ */
 void MX_GPIO_Init(void);
 
 /******************************************************************************
@@ -71,15 +65,24 @@ void MX_GPIO_Init(void);
 
 bool HAL_TestBench::init()
 {
-    /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-    HAL_Init();
+    bool isSuccess = true;
 
+    /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+    if (HAL_OK != HAL_Init())
+    {
+        // Error initializing HAL
+        isSuccess = false;
+    }
     /* Configure the system clock */
-    SystemClock_Config();
+    else if(false == SystemClock_Config())
+    {
+        // Error initializing Clock
+        isSuccess = false;
+    }
 
     /* Initialize all configured peripherals */
     MX_GPIO_Init();
-    return true;
+    return isSuccess;
 }
 
 void HAL_TestBench::delay(uint32_t delay)
@@ -171,12 +174,10 @@ void HAL_TestBench::digitalWrite(uint8_t gpio, GPIO_PinState set)
  * Local Functions
  *****************************************************************************/
 
-/**
- *  @brief System Clock Configuration
- *  @retval None
- */
-void SystemClock_Config(void)
+bool SystemClock_Config(void)
 {
+    bool isSuccess = true;
+
     RCC_OscInitTypeDef RCC_OscInitStruct = {0};
     RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
@@ -199,7 +200,7 @@ void SystemClock_Config(void)
     RCC_OscInitStruct.PLL.PLLQ = 4;
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
     {
-        Error_Handler();
+        isSuccess = false;
     }
 
     /** Initializes the CPU, AHB and APB buses clocks
@@ -212,8 +213,10 @@ void SystemClock_Config(void)
 
     if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
     {
-        Error_Handler();
+        isSuccess = false;
     }
+
+    return isSuccess;
 }
 
 void MX_GPIO_Init(void)
@@ -222,12 +225,12 @@ void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOE_CLK_ENABLE();
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
+  __HAL_RCC_GPIOE_CLK_ENABLE();
+  __HAL_RCC_GPIOH_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOE, LED_Blue_Pin|LED_Green_Pin, GPIO_PIN_RESET);
