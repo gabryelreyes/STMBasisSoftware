@@ -66,30 +66,7 @@ public:
      */
     virtual bool init();
 
-    /**
-     *  Set a GPIO
-     *  @param gpio GPIO Number.
-     */
-    virtual void setGPIO(PIN gpio);
-
-    /**
-     *  Reset a GPIO
-     *  @param gpio GPIO Number.
-     */
-    virtual void resetGPIO(PIN gpio);
-
-    /**
-     *  Toggle a GPIO
-     *  @param gpio GPIO Number.
-     */
-    virtual void toggleGPIO(PIN gpio);
-
 private:
-
-    /**
-     *  Write the Digital State of a GPIO.
-     */
-    void digitalWrite(PIN gpio, GPIO_PinState set);
 
 };
 

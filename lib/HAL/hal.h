@@ -75,19 +75,28 @@ public:
      *  Set a GPIO
      *  @param gpio GPIO Number.
      */
-    virtual void setGPIO(PIN gpio) = 0;
+    void setGPIO(PIN gpio)
+    {
+        HAL_GPIO_WritePin(gpio.getPort(), gpio.getPin(), GPIO_PIN_SET);
+    }
 
     /**
      *  Reset a GPIO
      *  @param gpio GPIO Number.
      */
-    virtual void resetGPIO(PIN gpio) = 0;
+    void resetGPIO(PIN gpio)
+    {
+        HAL_GPIO_WritePin(gpio.getPort(), gpio.getPin(), GPIO_PIN_RESET);
+    }
 
     /**
      *  Toggle a GPIO
      *  @param gpio GPIO Number.
      */
-    virtual void toggleGPIO(PIN gpio) = 0;
+    virtual void toggleGPIO(PIN gpio)
+    {
+        HAL_GPIO_TogglePin(gpio.getPort(), gpio.getPin());
+    }
 
 };
 

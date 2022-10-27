@@ -118,29 +118,9 @@ bool HAL_TestBench::init()
     return isSuccess;
 }
 
-void HAL_TestBench::setGPIO(PIN gpio)
-{
-    digitalWrite(gpio, GPIO_PIN_SET);
-}
-
-void HAL_TestBench::resetGPIO(PIN gpio)
-{
-    digitalWrite(gpio, GPIO_PIN_RESET);
-}
-
-void HAL_TestBench::toggleGPIO(PIN gpio)
-{
-    HAL_GPIO_TogglePin(gpio.getPort(), gpio.getPin());
-}
-
 /******************************************************************************
  * Private Methods
  *****************************************************************************/
-
-void HAL_TestBench::digitalWrite(PIN gpio, GPIO_PinState set)
-{
-    HAL_GPIO_WritePin(gpio.getPort(), gpio.getPin(), set);
-}
 
 /******************************************************************************
  * Local Functions
