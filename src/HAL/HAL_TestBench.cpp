@@ -118,25 +118,25 @@ bool HAL_TestBench::init()
     return isSuccess;
 }
 
-void HAL_TestBench::setGPIO(uint8_t gpio)
+void HAL_TestBench::setGPIO(PIN gpio)
 {
     digitalWrite(gpio, GPIO_PIN_SET);
 }
 
-void HAL_TestBench::resetGPIO(uint8_t gpio)
+void HAL_TestBench::resetGPIO(PIN gpio)
 {
     digitalWrite(gpio, GPIO_PIN_RESET);
 }
 
-void HAL_TestBench::toggleGPIO(uint8_t gpio)
+void HAL_TestBench::toggleGPIO(PIN gpio)
 {
     GPIO_TypeDef *pinPort = nullptr;
     uint16_t pinNumber = 0;
 
-    if (getGPIO(gpio, &pinPort, pinNumber))
-    {
-        HAL_GPIO_TogglePin(pinPort, pinNumber);
-    }
+    // if (getGPIO(gpio, &pinPort, pinNumber))
+    // {
+        HAL_GPIO_TogglePin(gpio.getPort(), gpio.getPin());
+    // }
 }
 
 /******************************************************************************
@@ -187,15 +187,15 @@ bool HAL_TestBench::getGPIO(uint8_t gpio, GPIO_TypeDef **pinPort, uint16_t &pinN
     return isSuccess;
 }
 
-void HAL_TestBench::digitalWrite(uint8_t gpio, GPIO_PinState set)
+void HAL_TestBench::digitalWrite(PIN gpio, GPIO_PinState set)
 {
     GPIO_TypeDef *pinPort = nullptr;
     uint16_t pinNumber = 0;
 
-    if (getGPIO(gpio, &pinPort, pinNumber))
-    {
-        HAL_GPIO_WritePin(pinPort, pinNumber, set);
-    }
+    // if (getGPIO(gpio, &pinPort, pinNumber))
+    // {
+        HAL_GPIO_WritePin(gpio.getPort(), gpio.getPin(), set);
+    // }
 }
 
 /******************************************************************************

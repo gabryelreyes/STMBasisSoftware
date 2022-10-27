@@ -219,6 +219,8 @@ void MX_FREERTOS_Init(void) {
 
 }
 
+static PIN led(GPIOE, GPIO_PIN_2);
+
 /* USER CODE BEGIN Header_StartDefaultTask */
 /**
   * @brief  Function implementing the defaultTask thread.
@@ -230,10 +232,13 @@ void LoopTask(void *argument)
 {
   /* USER CODE BEGIN LoopTask */
   /* Infinite loop */
+  // gHal.setGPIO(gHal.LED_BLUE);
+  // gHal.resetGPIO(gHal.LED_GREEN);
   for(;;)
   {
-    // HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_2);
-    gHal.toggleGPIO(HAL_TestBench::GPIO::LED_GREEN);
+    // // HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_2);
+    // gHal.toggleGPIO(HAL_TestBench::GPIO::LED_BLUE);
+    gHal.toggleGPIO(led);
     osDelay(1000);
   }
   /* USER CODE END LoopTask */

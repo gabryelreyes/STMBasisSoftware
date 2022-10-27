@@ -36,7 +36,7 @@ SOFTWARE.
 /******************************************************************************
  * Includes
  *****************************************************************************/
-#include "stm32f4xx_hal.h"
+#include "pin.h"
 
 /******************************************************************************
  * Macros
@@ -75,19 +75,19 @@ public:
      *  Set a GPIO
      *  @param gpio GPIO Number.
      */
-    virtual void setGPIO(uint8_t gpio) = 0;
+    virtual void setGPIO(PIN gpio) = 0;
 
     /**
      *  Reset a GPIO
      *  @param gpio GPIO Number.
      */
-    virtual void resetGPIO(uint8_t gpio) = 0;
+    virtual void resetGPIO(PIN gpio) = 0;
 
     /**
      *  Toggle a GPIO
      *  @param gpio GPIO Number.
      */
-    virtual void toggleGPIO(uint8_t gpio) = 0;
+    virtual void toggleGPIO(PIN gpio) = 0;
 
 };
 

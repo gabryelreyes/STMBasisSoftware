@@ -38,7 +38,6 @@ SOFTWARE.
  *****************************************************************************/
 
 #include "hal.h"
-
 /******************************************************************************
  * Macros
  *****************************************************************************/
@@ -80,19 +79,19 @@ public:
      *  Set a GPIO
      *  @param gpio GPIO Number.
      */
-    virtual void setGPIO(uint8_t gpio);
+    virtual void setGPIO(PIN gpio);
 
     /**
      *  Reset a GPIO
      *  @param gpio GPIO Number.
      */
-    virtual void resetGPIO(uint8_t gpio);
+    virtual void resetGPIO(PIN gpio);
 
     /**
      *  Toggle a GPIO
      *  @param gpio GPIO Number.
      */
-    virtual void toggleGPIO(uint8_t gpio);
+    virtual void toggleGPIO(PIN gpio);
 
 private:
     /**
@@ -107,7 +106,7 @@ private:
     /**
      *  Write the Digital State of a GPIO.
      */
-    void digitalWrite(uint8_t gpio, GPIO_PinState set);
+    void digitalWrite(PIN gpio, GPIO_PinState set);
 
 };
 
