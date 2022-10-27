@@ -46,21 +46,12 @@ SOFTWARE.
  * Types and Classes
  *****************************************************************************/
 
+/**
+ *  Implementation of the HAL for the Testbench.
+ */
 class HAL_TestBench : public HAL
 {   
 public:
-    /**
-     *  Enum of available GPIO.
-     */
-    enum GPIO
-    {
-        BMS_OK = 0,
-        SPI_CS_1,
-        SPI_CS_2,
-        LED_RED,
-        LED_BLUE,
-        LED_GREEN
-    };
 
     HAL_TestBench() : HAL()
     {
@@ -94,14 +85,6 @@ public:
     virtual void toggleGPIO(PIN gpio);
 
 private:
-    /**
-     *  Get the Port and Pin Number of an specific GPIO.
-     *  @param[in] gpio GPIO.
-     *  @param[out] pinPort GPIO Port.
-     *  @param[out] pinNumber GPIO Pin.
-     *  @return If successfull, returns true. Otherwise, false.
-     */
-    bool getGPIO(uint8_t gpio, GPIO_TypeDef **pinPort, uint16_t &pinNumber);
 
     /**
      *  Write the Digital State of a GPIO.
