@@ -20,6 +20,7 @@
 
 #include "cmsis_os.h"
 #include "HAL_TestBench.h"
+#include "GPIO_Definitions.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -219,8 +220,6 @@ void MX_FREERTOS_Init(void) {
 
 }
 
-static PIN led(GPIOE, GPIO_PIN_2);
-
 /* USER CODE BEGIN Header_StartDefaultTask */
 /**
   * @brief  Function implementing the defaultTask thread.
@@ -238,7 +237,7 @@ void LoopTask(void *argument)
   {
     // // HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_2);
     // gHal.toggleGPIO(HAL_TestBench::GPIO::LED_BLUE);
-    gHal.toggleGPIO(led);
+    gHal.toggleGPIO(BMS_OK);
     osDelay(1000);
   }
   /* USER CODE END LoopTask */
