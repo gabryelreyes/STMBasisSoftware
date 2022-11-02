@@ -34,8 +34,7 @@ SOFTWARE.
  * Includes
  *****************************************************************************/
 #include "Board.h"
-#include "GPIO_Definitions.h"
-#include "util.h"
+
 
 /******************************************************************************
  * Macros
@@ -52,17 +51,6 @@ SOFTWARE.
 /******************************************************************************
  * Public Methods
  *****************************************************************************/
-
-void Board::initializeUserGPIO(void)
-{
-    for (uint8_t index = 0U; index < UTIL_ARRAY_NUM(GPIO::pinList); ++index)
-    {
-        if (nullptr != GPIO::pinList[index])
-        {
-            GPIO::pinList[index]->init();
-        }
-    }
-}
 
 /******************************************************************************
  * Private Methods

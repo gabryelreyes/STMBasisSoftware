@@ -37,6 +37,8 @@ SOFTWARE.
  * Includes
  *****************************************************************************/
 #include "pin.h"
+#include "GPIO_Definitions.h"
+#include "util.h"
 
 /******************************************************************************
  * Macros
@@ -90,18 +92,29 @@ public:
         if(isSuccess == true)
         {
             initializePorts();
-            initializeUserGPIO();
+            initializeUserGpio();
         }
 
         return isSuccess;
     }
 
+private:
+
     /**
      *  Initialization of user GPIO Pins.
      */
-    virtual void initializeUserGPIO(void) = 0;
+    void initializeUserGpio(void)
+    {
+        for (uint8_t index = 0U; index < UTIL_ARRAY_NUM(GPIO::pinList); ++index)
+        {
+            if (nullptr != GPIO::pinList[index])
+            {
+                GPIO::pinList[index]->init();
+            }
+        }
+    }
 
-private:
+
     /**
      *  Initialization of GPIO Ports.
      *  Sets all available pins to Analog Inputs.

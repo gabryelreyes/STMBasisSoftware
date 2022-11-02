@@ -62,11 +62,6 @@ public:
     {
     }
 
-    /**
-     *  Initialization of user GPIO Pins.
-     */
-    virtual void initializeUserGPIO(void);
-
 private:
 
 };
