@@ -103,6 +103,7 @@ namespace GPIO
                             GPIO_SPEED_FREQ_VERY_HIGH);
 
     /** Red LED */
+<<<<<<< HEAD
     static DigitalOut LED_RED(GPIOE, GPIO_PIN_0);
 
     /** Green LED */
@@ -124,6 +125,35 @@ namespace GPIO
         &LED_BLUE,
         &BMS_OK
     };
+=======
+    // static DigitalOut LED_RED(GPIOE, GPIO_PIN_0); // BMS PCB
+    static DigitalOut LED_RED(GPIOD, GPIO_PIN_15); // DISCO DevBoard
+
+    /** Green LED */
+    // static DigitalOut LED_GREEN(GPIOE, GPIO_PIN_1); // BMS PCB
+    static DigitalOut LED_GREEN(GPIOD, GPIO_PIN_14); // DISCO DevBoard
+
+    /** Blue LED */
+    // static DigitalOut LED_BLUE(GPIOE, GPIO_PIN_2); // BMS PCB
+    static DigitalOut LED_BLUE(GPIOD, GPIO_PIN_13); // DISCO DevBoard
+
+    /** BMS OK */
+    // static DigitalOut BMS_OK(GPIOE, GPIO_PIN_15); // BMS PCB
+    static DigitalOut BMS_OK(GPIOD, GPIO_PIN_12); // DISCO DevBoard
+
+    static DigitalIn TestButton(GPIOA, GPIO_PIN_0);
+
+    /** A list of all used i/o pins, used for initialization. */
+    static const PIN *pinList[] =
+        {
+            &NSS_1,
+            &NSS_2,
+            &LED_RED,
+            &LED_GREEN,
+            &LED_BLUE,
+            &BMS_OK,
+            &TestButton};
+>>>>>>> 58a7abe7b5980b7181ba5efb8b47a1189da054ff
 
 #endif /* BMS */
 
