@@ -1,0 +1,46 @@
+# Name of the Workflow
+name: main
+
+# When will the Workflow run
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+    workflow_dispatch:
+
+# Body of Workflow
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                environment: ["Discovery_DevBoard", "BMS"]
+        steps:
+            -   name: Checkout repository
+                uses: actions/checkout@v2
+
+            -   name: Cache Pip
+                uses: actions/cache@v2
+                with:
+                    path: ~/.cache/pip
+                    key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+                    restore-keys: |
+                        ${{ runner.os }}-pip-
+            
+            -   name: Cache PlatformIO
+                uses: actions/cache@v2
+                with:
+                    path: ~/.platformio
+                    key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+
+            -   name: Set up Python
+                uses: actions/setup-python@v2
+
+            -   name: Install PlatformIO
+                run: |
+                    python -m pip install --upgrade pip
+                    pip install --upgrade platformio
+
+            -   name: Build ${{ matrix.environment }}
+                run: platformio run --environment ${{ matrix.environment }}
