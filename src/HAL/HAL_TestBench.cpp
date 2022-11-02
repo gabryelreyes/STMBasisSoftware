@@ -47,18 +47,13 @@ SOFTWARE.
  *  @brief System Clock Configuration
  *  @retval None
  */
-bool SystemClock_Config(void);
+bool SystemClock_Config (void);
 
 /** 
  *  Configure GPIO Ports.
  *  Sets all Pins to Analog Input.
  */
-void initGpioPorts(void);
-
-/**
- *  Configure the GPIO Pins for the current Board.
- */
-void initBoardGpio(void);
+void initGpioPorts (void);
 
 /******************************************************************************
  * Local Variables
@@ -68,7 +63,7 @@ void initBoardGpio(void);
  * Public Methods
  *****************************************************************************/
 
-bool HAL_TestBench::init()
+bool HAL_TestBench::init(void)
 {
     bool isSuccess = true;
 
@@ -79,7 +74,7 @@ bool HAL_TestBench::init()
         isSuccess = false;
     }
     /* Configure the system clock */
-    else if(false == SystemClock_Config())
+    else if (false == SystemClock_Config())
     {
         // Error initializing Clock
         isSuccess = false;
@@ -87,9 +82,6 @@ bool HAL_TestBench::init()
 
     // Initialize GPIO Banks. Sets all Pins to Analog Input.
     initGpioPorts();
-
-    // Initialize GPIO for the current Board.
-    initBoardGpio();
 
     return isSuccess;
 }
@@ -147,7 +139,7 @@ bool SystemClock_Config(void)
     return isSuccess;
 }
 
-void initGpioPorts ()
+void initGpioPorts(void)
 {
     GPIO_InitTypeDef GPIO_InitStruct = {0};
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
@@ -282,72 +274,6 @@ void initGpioPorts ()
 
     __HAL_RCC_GPIOH_CLK_ENABLE();
     HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
-}
-
-void initBoardGpio(void)
-{
-    GPIO_InitTypeDef GPIO_InitStruct = {0};
-
-    /*Configure BMS_OK */
-    GPIO_InitStruct.Pin = BMS_OK_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-
-    HAL_GPIO_DeInit(BMS_OK_GPIO_Port, BMS_OK_Pin);
-    HAL_GPIO_WritePin(BMS_OK_GPIO_Port, BMS_OK_Pin, GPIO_PIN_RESET);
-    HAL_GPIO_Init(BMS_OK_GPIO_Port, &GPIO_InitStruct);
-
-
-    /*Configure SPI_CS_1 */
-    GPIO_InitStruct.Pin = NSS_1_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-
-    HAL_GPIO_DeInit(NSS_1_GPIO_Port, NSS_1_Pin);
-    HAL_GPIO_WritePin(NSS_1_GPIO_Port, NSS_1_Pin, GPIO_PIN_RESET);
-    HAL_GPIO_Init(NSS_1_GPIO_Port, &GPIO_InitStruct);
-
-    /*Configure SPI_CS_2 */
-    GPIO_InitStruct.Pin = NSS_2_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-
-    HAL_GPIO_DeInit(NSS_2_GPIO_Port, NSS_2_Pin);
-    HAL_GPIO_WritePin(NSS_2_GPIO_Port, NSS_2_Pin, GPIO_PIN_RESET);
-    HAL_GPIO_Init(NSS_2_GPIO_Port, &GPIO_InitStruct);
-
-    /*Configure Red LED */
-    GPIO_InitStruct.Pin = LED_Red_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-
-    HAL_GPIO_DeInit(LED_Red_GPIO_Port, LED_Red_Pin);
-    HAL_GPIO_WritePin(LED_Red_GPIO_Port, LED_Red_Pin, GPIO_PIN_RESET);
-    HAL_GPIO_Init(LED_Red_GPIO_Port, &GPIO_InitStruct);
-
-    /*Configure Blue LED */
-    GPIO_InitStruct.Pin = LED_Blue_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-
-    HAL_GPIO_DeInit(LED_Blue_GPIO_Port, LED_Blue_Pin);
-    HAL_GPIO_WritePin(LED_Blue_GPIO_Port, LED_Blue_Pin, GPIO_PIN_RESET);
-    HAL_GPIO_Init(LED_Blue_GPIO_Port, &GPIO_InitStruct);
-
-    /*Configure Green LED */
-    GPIO_InitStruct.Pin = LED_Green_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-
-    HAL_GPIO_DeInit(LED_Green_GPIO_Port, LED_Green_Pin);
-    HAL_GPIO_WritePin(LED_Green_GPIO_Port, LED_Green_Pin, GPIO_PIN_RESET);
-    HAL_GPIO_Init(LED_Green_GPIO_Port, &GPIO_InitStruct);
 }
 
 /******************************************************************************

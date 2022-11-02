@@ -48,10 +48,18 @@ SOFTWARE.
  *****************************************************************************/
 
 /** SPI 1 CS */
-static PIN NSS_1(GPIOA, GPIO_PIN_4);
+static PIN NSS_1(GPIOA, 
+                 GPIO_PIN_4, 
+                 GPIO_MODE_OUTPUT_PP, 
+                 GPIO_NOPULL, 
+                 GPIO_SPEED_FREQ_VERY_HIGH);
 
 /** SPI 2 CS */
-static PIN NSS_2(GPIOB, GPIO_PIN_9);
+static PIN NSS_2(GPIOB, 
+                 GPIO_PIN_9,
+                 GPIO_MODE_OUTPUT_PP, 
+                 GPIO_NOPULL, 
+                 GPIO_SPEED_FREQ_VERY_HIGH);
 
 /** Red LED */
 static PIN LED_RED(GPIOE, GPIO_PIN_0);

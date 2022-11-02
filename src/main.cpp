@@ -305,6 +305,8 @@ int main(void)
     }
   }
 
+  BMS_OK.initPin();
+
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */

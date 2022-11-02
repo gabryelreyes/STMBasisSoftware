@@ -56,7 +56,15 @@ public:
      *  @param[in] port GPIO Port.
      *  @param[in] pin GPIO Pin Number.
      */
-    PIN(GPIO_TypeDef *port, uint32_t pin) : m_port(port), m_pinNumber(pin)
+    PIN(GPIO_TypeDef *port, 
+        uint32_t pin, 
+        uint32_t mode = GPIO_MODE_OUTPUT_PP, 
+        uint32_t pull = GPIO_NOPULL, 
+        uint32_t speed = GPIO_SPEED_FREQ_LOW) : m_port(port), 
+                                                m_pinNumber(pin), 
+                                                m_pinMode(mode), 
+                                                m_pinPull(pull), 
+                                                m_pinSpeed(speed)
     {
     }
 
@@ -65,6 +73,22 @@ public:
      */
     ~PIN()
     {
+    }
+
+    /**
+     *  Pin initialization using values provided on instancing.
+     */
+    void initPin(void)
+    {
+        GPIO_InitTypeDef GPIO_InitStruct = {0};
+        GPIO_InitStruct.Pin = m_pinNumber;
+        GPIO_InitStruct.Mode = m_pinMode;
+        GPIO_InitStruct.Pull = m_pinPull;
+        GPIO_InitStruct.Speed = m_pinSpeed;
+
+        HAL_GPIO_DeInit(m_port, m_pinNumber);
+        HAL_GPIO_WritePin(m_port, m_pinNumber, GPIO_PIN_RESET);
+        HAL_GPIO_Init(m_port, &GPIO_InitStruct);
     }
 
     /**
@@ -85,6 +109,33 @@ public:
         return m_pinNumber;
     }
 
+    /**
+     *  Get the GPIO Pin Mode.
+     *  @return GPIO Pin Mode.
+     */
+    uint32_t getMode()
+    {
+        return m_pinMode;
+    }
+
+    /**
+     *  Get the GPIO Pin Pull.
+     *  @return GPIO Pin Pull.
+     */
+    uint32_t getPull()
+    {
+        return m_pinPull;
+    }
+
+    /**
+     *  Get the GPIO Pin Speed.
+     *  @return GPIO Pin Speed.
+     */
+    uint32_t getSpeed()
+    {
+        return m_pinSpeed;
+    }
+
 private:
     /**
      *  GPIO Port.
@@ -95,6 +146,21 @@ private:
      *  GPIO Pin Number.
      */
     uint32_t m_pinNumber;
+
+    /**
+     *  GPIO Pin Mode.
+     */
+    uint32_t m_pinMode;
+
+    /**
+     *  GPIO Pin Pull.
+     */
+    uint32_t m_pinPull;
+
+    /**
+     *  GPIO Pin Speed.
+     */
+    uint32_t m_pinSpeed;
 
     /**
      *  Default Constructor.

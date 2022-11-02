@@ -64,7 +64,7 @@ public:
     /**
      *  Initialization of the HAL.
      */
-    virtual bool init();
+    virtual bool init (void);
 
 private:
 
