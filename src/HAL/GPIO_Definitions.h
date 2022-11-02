@@ -70,7 +70,7 @@ static DigitalOut LED_GREEN(GPIOD, GPIO_PIN_12);
 static DigitalIn userButton(GPIOA, GPIO_PIN_0);
 
 /** A list of all used i/o pins, used for initialization. */
-static PIN* pinList[] =
+static const PIN* pinList[] =
 {
     &NSS_1,
     &NSS_2,
@@ -115,7 +115,7 @@ static DigitalOut BMS_OK(GPIOD, GPIO_PIN_12); // DISCO DevBoard
 static DigitalIn TestButton(GPIOA, GPIO_PIN_0);
 
 /** A list of all used i/o pins, used for initialization. */
-static PIN* pinList[] =
+static const PIN* pinList[] =
 {
     &NSS_1,
     &NSS_2,
