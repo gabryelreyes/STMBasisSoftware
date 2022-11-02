@@ -75,6 +75,8 @@ static DigitalOut LED_BLUE(GPIOD, GPIO_PIN_13); // DISCO DevBoard
 // static DigitalOut BMS_OK(GPIOE, GPIO_PIN_15); // BMS PCB
 static DigitalOut BMS_OK(GPIOD, GPIO_PIN_12); // DISCO DevBoard
 
+static DigitalIn TestButton(GPIOA, GPIO_PIN_0);
+
 /** A list of all used i/o pins, used for initialization. */
 static PIN* pinList[] =
 {
@@ -83,7 +85,8 @@ static PIN* pinList[] =
     &LED_RED,
     &LED_GREEN,
     &LED_BLUE,
-    &BMS_OK
+    &BMS_OK,
+    &TestButton
 };
 
 #endif /* GPIO_DEFINITIONS_H_ */

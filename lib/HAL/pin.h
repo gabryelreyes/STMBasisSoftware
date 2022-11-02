@@ -183,7 +183,7 @@ class DigitalOut : public PIN
 {
 public:
     /**
-     *  Constructor of Digital Pin.
+     *  Constructor of Digital Output Pin.
      *  @param[in] port GPIO Port (A..F)
      *  @param[in] pin GPIO Pin Number
      *  @param[in] pull Pin Pull direction
@@ -232,5 +232,33 @@ private:
 };
 
 
+/**
+ *  Digital Input Pin
+ */
+class DigitalIn : public PIN
+{
+public:
+    /**
+     *  Constructor of Digital Pin.
+     *  @param[in] port GPIO Port (A..F)
+     *  @param[in] pin GPIO Pin Number
+     *  @param[in] pull Pin Pull direction
+     */
+    DigitalIn(GPIO_TypeDef *port, uint32_t pin, uint32_t pull = GPIO_NOPULL) : 
+              PIN(port, pin, GPIO_MODE_INPUT, pull, GPIO_SPEED_FREQ_LOW)
+    {
+    }
+
+    ~DigitalIn()
+    {
+    }
+
+    bool read()
+    {
+        return (bool)(HAL_GPIO_ReadPin(m_port, m_pinNumber));
+    }
+
+private:
+};
 
 #endif /* PIN_H_ */

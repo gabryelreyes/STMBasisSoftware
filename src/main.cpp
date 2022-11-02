@@ -233,8 +233,10 @@ void LoopTask(void *argument)
   uint32_t delayMs = 50;
   for(;;)
   {
-
     LED_RED.reset();
+    if (TestButton.read())
+    {
+
     BMS_OK.set();
     osDelay(delayMs);
 
@@ -253,6 +255,7 @@ void LoopTask(void *argument)
 
     osDelay(delayMs);
 
+    }
   }
   /* USER CODE END LoopTask */
 }
