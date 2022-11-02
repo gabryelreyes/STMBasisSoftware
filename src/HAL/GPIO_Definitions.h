@@ -46,6 +46,10 @@ SOFTWARE.
 /******************************************************************************
  * Types and Classes
  *****************************************************************************/
+
+namespace GPIO
+{
+
 #ifdef Discovery_DevBoard
 /** SPI 1 CS */
 static DigitalOut NSS_1(GPIOA, 
@@ -127,5 +131,7 @@ static const PIN* pinList[] =
 };
 
 #endif /* BMS */
+
+};
 
 #endif /* GPIO_DEFINITIONS_H_ */
