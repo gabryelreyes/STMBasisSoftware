@@ -26,7 +26,7 @@ SOFTWARE.
     DESCRIPTION
 *******************************************************************************/
 /**
- *  @brief  Definitions of GPIO Pins for Testbench
+ *  @brief  Definitions of GPIO Pins for Discovery Development Board
  *  @author Gabryel Reyes <gabryelrdiaz@gmail.com>
  */
 
@@ -46,7 +46,44 @@ SOFTWARE.
 /******************************************************************************
  * Types and Classes
  *****************************************************************************/
+#ifdef Discovery_DevBoard
+/** SPI 1 CS */
+static DigitalOut NSS_1(GPIOA, 
+                        GPIO_PIN_4,
+                        GPIO_NOPULL, 
+                        GPIO_SPEED_FREQ_VERY_HIGH);
 
+/** SPI 2 CS */
+static DigitalOut NSS_2(GPIOB, 
+                        GPIO_PIN_9,
+                        GPIO_NOPULL, 
+                        GPIO_SPEED_FREQ_VERY_HIGH);
+
+static DigitalOut LED_BLUE(GPIOD, GPIO_PIN_15);
+
+static DigitalOut LED_RED(GPIOD, GPIO_PIN_14);
+
+static DigitalOut LED_ORANGE(GPIOD, GPIO_PIN_13);
+
+static DigitalOut LED_GREEN(GPIOD, GPIO_PIN_12);
+
+static DigitalIn userButton(GPIOA, GPIO_PIN_0);
+
+/** A list of all used i/o pins, used for initialization. */
+static PIN* pinList[] =
+{
+    &NSS_1,
+    &NSS_2,
+    &LED_RED,
+    &LED_GREEN,
+    &LED_BLUE,
+    &LED_ORANGE,
+    &userButton
+};
+
+#endif /* Discovery_DevBoard */
+
+#ifdef BMS
 /** SPI 1 CS */
 static DigitalOut NSS_1(GPIOA, 
                         GPIO_PIN_4,
@@ -88,5 +125,7 @@ static PIN* pinList[] =
     &BMS_OK,
     &TestButton
 };
+
+#endif /* BMS */
 
 #endif /* GPIO_DEFINITIONS_H_ */

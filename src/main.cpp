@@ -231,31 +231,32 @@ void LoopTask(void *argument)
   /* USER CODE BEGIN LoopTask */
   /* Infinite loop */
   uint32_t delayMs = 50;
-  for(;;)
+  for (;;)
   {
-    LED_RED.reset();
-    if (TestButton.read())
+    #ifdef Discovery_DevBoard
+    LED_GREEN.reset();
+    if (userButton.read())
     {
 
-    BMS_OK.set();
-    osDelay(delayMs);
+      LED_ORANGE.set();
+      osDelay(delayMs);
 
-    BMS_OK.reset();
-    LED_BLUE.set();
+      LED_ORANGE.reset();
+      LED_RED.set();
 
-    osDelay(delayMs);
+      osDelay(delayMs);
 
-    LED_BLUE.reset();
-    LED_GREEN.set();
+      LED_RED.reset();
+      LED_BLUE.set();
 
-    osDelay(delayMs);
+      osDelay(delayMs);
+      
+      LED_BLUE.reset();
+      LED_GREEN.set();
 
-    LED_GREEN.reset();
-    LED_RED.set();
-
-    osDelay(delayMs);
-
+      osDelay(delayMs);
     }
+    #endif
   }
   /* USER CODE END LoopTask */
 }
