@@ -26,12 +26,12 @@ SOFTWARE.
     DESCRIPTION
 *******************************************************************************/
 /**
- *  @brief  Definitions of GPIO Pins for Discovery Development Board
+ *  @brief  GPIO Pins for Development Boards
  *  @author Gabryel Reyes <gabryelrdiaz@gmail.com>
  */
 
-#ifndef GPIO_DEFINITIONS_H_
-#define GPIO_DEFINITIONS_H_
+#ifndef GPIO_H_
+#define GPIO_H_
 
 /******************************************************************************
  * Includes
@@ -129,4 +129,4 @@ namespace GPIO
 
 };
 
-#endif /* GPIO_DEFINITIONS_H_ */
+#endif /* GPIO_H_ */
