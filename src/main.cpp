@@ -20,7 +20,6 @@
 
 #include "cmsis_os.h"
 #include "HAL_TestBench.h"
-#include "GPIO_Definitions.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -304,9 +303,6 @@ int main(void)
       // Error initializing HAL
     }
   }
-
-  BMS_OK.initPin();
-
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */

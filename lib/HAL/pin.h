@@ -78,7 +78,7 @@ public:
     /**
      *  Pin initialization using values provided on instancing.
      */
-    void initPin(void)
+    void init(void)
     {
         GPIO_InitTypeDef GPIO_InitStruct = {0};
         GPIO_InitStruct.Pin = m_pinNumber;

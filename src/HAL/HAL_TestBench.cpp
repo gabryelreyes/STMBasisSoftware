@@ -34,6 +34,7 @@ SOFTWARE.
  * Includes
  *****************************************************************************/
 #include "HAL_TestBench.h"
+#include "util.h"
 
 /******************************************************************************
  * Macros
@@ -66,6 +67,7 @@ void initGpioPorts (void);
 bool HAL_TestBench::init(void)
 {
     bool isSuccess = true;
+    uint8_t index = 0U;
 
     /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
     if (HAL_OK != HAL_Init())
@@ -82,6 +84,15 @@ bool HAL_TestBench::init(void)
 
     // Initialize GPIO Banks. Sets all Pins to Analog Input.
     initGpioPorts();
+
+    /* Initialize all i/o pins */
+    for(index = 0U; index < UTIL_ARRAY_NUM(pinList); ++index)
+    {
+        if (nullptr != pinList[index])
+        {
+            pinList[index]->init();
+        }
+    }
 
     return isSuccess;
 }

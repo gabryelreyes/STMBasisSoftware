@@ -71,6 +71,18 @@ static PIN LED_GREEN(GPIOE, GPIO_PIN_1);
 static PIN LED_BLUE(GPIOE, GPIO_PIN_2);
 
 /** BMS OK */
-static PIN BMS_OK(GPIOE, GPIO_PIN_15);
+// static PIN BMS_OK(GPIOE, GPIO_PIN_15);
+static PIN BMS_OK(GPIOD, GPIO_PIN_12);
+
+/** A list of all used i/o pins, used for initialization. */
+static PIN* pinList[] =
+{
+    &NSS_1,
+    &NSS_2,
+    &LED_RED,
+    &LED_GREEN,
+    &LED_BLUE,
+    &BMS_OK
+};
 
 #endif /* GPIO_DEFINITIONS_H_ */
