@@ -19,7 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include "cmsis_os.h"
-#include "Board.h"
+#include "hal.h"
 #include "GPIO.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -156,7 +156,7 @@ void timer_callback_100ms(void *argument);
 void timer_callback_1000ms(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
-Board gHal;
+HAL gBoard;
 
 /**
   * @brief  FreeRTOS initialization
@@ -315,7 +315,7 @@ int main(void)
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
-  if (false == gHal.init())
+  if (false == gBoard.init())
   {
     while (1)
     {
@@ -375,5 +375,25 @@ void timer_callback_1000ms(void *argument)
 /* USER CODE END 4 */
 
 
+/**
+ * @brief  Period elapsed callback in non blocking mode
+ * @note   This function is called  when TIM6 interrupt took place, inside
+ * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+ * a global variable "uwTick" used as application time base.
+ * @param  htim : TIM handle
+ * @retval None
+ */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    /* USER CODE BEGIN Callback 0 */
 
+    /* USER CODE END Callback 0 */
+    if (htim->Instance == TIM6)
+    {
+        HAL_IncTick();
+    }
+    /* USER CODE BEGIN Callback 1 */
+
+    /* USER CODE END Callback 1 */
+}
 
