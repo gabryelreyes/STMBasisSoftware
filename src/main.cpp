@@ -20,7 +20,7 @@
 
 #include "cmsis_os.h"
 #include "Board.h"
-#include "GPIO_Definitions.h"
+#include "GPIO.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
