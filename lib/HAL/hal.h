@@ -70,34 +70,6 @@ public:
      *  Initialization of the HAL.
      */
     virtual bool init() = 0;
-
-    /**
-     *  Set a GPIO
-     *  @param gpio GPIO Number.
-     */
-    void setGPIO(PIN gpio)
-    {
-        HAL_GPIO_WritePin(gpio.getPort(), gpio.getPin(), GPIO_PIN_SET);
-    }
-
-    /**
-     *  Reset a GPIO
-     *  @param gpio GPIO Number.
-     */
-    void resetGPIO(PIN gpio)
-    {
-        HAL_GPIO_WritePin(gpio.getPort(), gpio.getPin(), GPIO_PIN_RESET);
-    }
-
-    /**
-     *  Toggle a GPIO
-     *  @param gpio GPIO Number.
-     */
-    virtual void toggleGPIO(PIN gpio)
-    {
-        HAL_GPIO_TogglePin(gpio.getPort(), gpio.getPin());
-    }
-
 };
 
 #endif /* HAL_H_ */

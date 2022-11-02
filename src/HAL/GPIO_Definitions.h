@@ -48,31 +48,32 @@ SOFTWARE.
  *****************************************************************************/
 
 /** SPI 1 CS */
-static PIN NSS_1(GPIOA, 
-                 GPIO_PIN_4, 
-                 GPIO_MODE_OUTPUT_PP, 
-                 GPIO_NOPULL, 
-                 GPIO_SPEED_FREQ_VERY_HIGH);
+static DigitalOut NSS_1(GPIOA, 
+                        GPIO_PIN_4,
+                        GPIO_NOPULL, 
+                        GPIO_SPEED_FREQ_VERY_HIGH);
 
 /** SPI 2 CS */
-static PIN NSS_2(GPIOB, 
-                 GPIO_PIN_9,
-                 GPIO_MODE_OUTPUT_PP, 
-                 GPIO_NOPULL, 
-                 GPIO_SPEED_FREQ_VERY_HIGH);
+static DigitalOut NSS_2(GPIOB, 
+                        GPIO_PIN_9,
+                        GPIO_NOPULL, 
+                        GPIO_SPEED_FREQ_VERY_HIGH);
 
 /** Red LED */
-static PIN LED_RED(GPIOE, GPIO_PIN_0);
+// static DigitalOut LED_RED(GPIOE, GPIO_PIN_0); // BMS PCB
+static DigitalOut LED_RED(GPIOD, GPIO_PIN_15); // DISCO DevBoard
 
 /** Green LED */
-static PIN LED_GREEN(GPIOE, GPIO_PIN_1);
+// static DigitalOut LED_GREEN(GPIOE, GPIO_PIN_1); // BMS PCB
+static DigitalOut LED_GREEN(GPIOD, GPIO_PIN_14); // DISCO DevBoard
 
 /** Blue LED */
-static PIN LED_BLUE(GPIOE, GPIO_PIN_2);
+// static DigitalOut LED_BLUE(GPIOE, GPIO_PIN_2); // BMS PCB
+static DigitalOut LED_BLUE(GPIOD, GPIO_PIN_13); // DISCO DevBoard
 
 /** BMS OK */
-// static PIN BMS_OK(GPIOE, GPIO_PIN_15);
-static PIN BMS_OK(GPIOD, GPIO_PIN_12);
+// static DigitalOut BMS_OK(GPIOE, GPIO_PIN_15); // BMS PCB
+static DigitalOut BMS_OK(GPIOD, GPIO_PIN_12); // DISCO DevBoard
 
 /** A list of all used i/o pins, used for initialization. */
 static PIN* pinList[] =

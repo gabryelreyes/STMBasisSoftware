@@ -12,7 +12,7 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
 OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -52,18 +52,20 @@ class PIN
 {
 public:
     /**
-     *  Pin Constructor.
-     *  @param[in] port GPIO Port.
-     *  @param[in] pin GPIO Pin Number.
+     *  Constructor of a Pin.
+     *  @param[in] port GPIO Port (A..F)
+     *  @param[in] pin GPIO Pin Number
+     *  @param[in] pull Pin Pull direction
+     *  @param[in] speed Pin Speed
      */
-    PIN(GPIO_TypeDef *port, 
-        uint32_t pin, 
-        uint32_t mode = GPIO_MODE_OUTPUT_PP, 
-        uint32_t pull = GPIO_NOPULL, 
-        uint32_t speed = GPIO_SPEED_FREQ_LOW) : m_port(port), 
-                                                m_pinNumber(pin), 
-                                                m_pinMode(mode), 
-                                                m_pinPull(pull), 
+    PIN(GPIO_TypeDef *port,
+        uint32_t pin,
+        uint32_t mode = GPIO_MODE_OUTPUT_PP,
+        uint32_t pull = GPIO_NOPULL,
+        uint32_t speed = GPIO_SPEED_FREQ_LOW) : m_port(port),
+                                                m_pinNumber(pin),
+                                                m_pinMode(mode),
+                                                m_pinPull(pull),
                                                 m_pinSpeed(speed)
     {
     }
@@ -136,7 +138,7 @@ public:
         return m_pinSpeed;
     }
 
-private:
+protected:
     /**
      *  GPIO Port.
      */
@@ -170,8 +172,65 @@ private:
     PIN();
 
     /* An instance shall not be copied. */
-    PIN(const PIN& Pin);
-    PIN& operator=(const PIN& Pin);
+    PIN(const PIN &Pin);
+    PIN &operator=(const PIN &Pin);
 };
+
+/**
+ *  Digital Output Pin
+ */
+class DigitalOut : public PIN
+{
+public:
+    /**
+     *  Constructor of Digital Pin.
+     *  @param[in] port GPIO Port (A..F)
+     *  @param[in] pin GPIO Pin Number
+     *  @param[in] pull Pin Pull direction
+     *  @param[in] speed Pin Speed
+     */
+    DigitalOut(GPIO_TypeDef *port, uint32_t pin, uint32_t pull = GPIO_NOPULL, uint32_t speed = GPIO_SPEED_FREQ_LOW) : 
+               PIN(port, pin, GPIO_MODE_OUTPUT_PP, pull, speed)
+    {
+    }
+
+    /**
+     *  Default destructor.
+     */
+    ~DigitalOut()
+    {
+    }
+
+    /**
+     *  Set the Digital Output
+     */
+    void set(void) const
+    {
+        HAL_GPIO_WritePin(m_port, m_pinNumber, GPIO_PIN_SET);
+    }
+
+    /**
+     *  Reset the Digital Output
+     */
+    void reset(void) const
+    {
+        HAL_GPIO_WritePin(m_port, m_pinNumber, GPIO_PIN_RESET);
+    }
+
+    /**
+     *  Toggle the Digital Output
+     */
+    void toggle(void) const
+    {
+        HAL_GPIO_TogglePin(m_port, m_pinNumber);
+    }
+
+private:
+    /* An instance shall not be copied. */
+    DigitalOut(const DigitalOut &Pin);
+    DigitalOut &operator=(const DigitalOut &Pin);
+};
+
+
 
 #endif /* PIN_H_ */

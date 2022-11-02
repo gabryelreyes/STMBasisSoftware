@@ -230,14 +230,29 @@ void LoopTask(void *argument)
 {
   /* USER CODE BEGIN LoopTask */
   /* Infinite loop */
-  // gHal.setGPIO(gHal.LED_BLUE);
-  // gHal.resetGPIO(gHal.LED_GREEN);
+  uint32_t delayMs = 50;
   for(;;)
   {
-    // // HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_2);
-    // gHal.toggleGPIO(HAL_TestBench::GPIO::LED_BLUE);
-    BMS_OK.getSpeed();
-    osDelay(1000);
+
+    LED_RED.reset();
+    BMS_OK.set();
+    osDelay(delayMs);
+
+    BMS_OK.reset();
+    LED_BLUE.set();
+
+    osDelay(delayMs);
+
+    LED_BLUE.reset();
+    LED_GREEN.set();
+
+    osDelay(delayMs);
+
+    LED_GREEN.reset();
+    LED_RED.set();
+
+    osDelay(delayMs);
+
   }
   /* USER CODE END LoopTask */
 }
