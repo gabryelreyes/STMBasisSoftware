@@ -30,15 +30,14 @@ SOFTWARE.
  *  @author Gabryel Reyes <gabryelrdiaz@gmail.com>
  */
 
-#ifndef HAL_TESTBENCH_H_
-#define HAL_TESTBENCH_H_
+#ifndef BOARD_H_
+#define BOARD_H_
 
 /******************************************************************************
  * Includes
  *****************************************************************************/
 
 #include "hal.h"
-#include "GPIO_Definitions.h"
 
 /******************************************************************************
  * Macros
@@ -49,24 +48,24 @@ SOFTWARE.
  *****************************************************************************/
 
 /**
- *  Implementation of the HAL for the Testbench.
+ *  Implementation of the HAL for a circuit board.
  */
-class HAL_TestBench : public HAL
+class Board : public HAL
 {   
 public:
 
-    HAL_TestBench() : HAL()
+    Board() : HAL()
     {
     }
 
-    ~HAL_TestBench()
+    ~Board()
     {
     }
 
     /**
-     *  Initialization of the HAL.
+     *  Initialization of user GPIO Pins.
      */
-    virtual bool init (void);
+    virtual void initializeUserGPIO(void);
 
 private:
 
