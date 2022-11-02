@@ -19,7 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include "cmsis_os.h"
-#include "HAL_TestBench.h"
+#include "Board.h"
+#include "GPIO_Definitions.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -47,7 +48,6 @@
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
-void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 
 
@@ -156,7 +156,7 @@ void timer_callback_100ms(void *argument);
 void timer_callback_1000ms(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
-HAL_TestBench gHal;
+Board gHal;
 
 /**
   * @brief  FreeRTOS initialization
@@ -234,25 +234,25 @@ void LoopTask(void *argument)
   for (;;)
   {
     #ifdef Discovery_DevBoard
-    LED_GREEN.reset();
-    if (userButton.read())
+    GPIO::LED_GREEN.reset();
+    if (GPIO::userButton.read())
     {
 
-      LED_ORANGE.set();
+      GPIO::LED_ORANGE.set();
       osDelay(delayMs);
 
-      LED_ORANGE.reset();
-      LED_RED.set();
+      GPIO::LED_ORANGE.reset();
+      GPIO::LED_RED.set();
 
       osDelay(delayMs);
 
-      LED_RED.reset();
-      LED_BLUE.set();
+      GPIO::LED_RED.reset();
+      GPIO::LED_BLUE.set();
 
       osDelay(delayMs);
       
-      LED_BLUE.reset();
-      LED_GREEN.set();
+      GPIO::LED_BLUE.reset();
+      GPIO::LED_GREEN.set();
 
       osDelay(delayMs);
     }
