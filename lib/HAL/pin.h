@@ -56,7 +56,7 @@ public:
      *  @param[in] port GPIO Port.
      *  @param[in] pin GPIO Pin Number.
      */
-    PIN(GPIO_TypeDef *port, uint16_t pin) : m_port(port), m_pinNumber(pin)
+    PIN(GPIO_TypeDef *port, uint32_t pin) : m_port(port), m_pinNumber(pin)
     {
     }
 
@@ -80,7 +80,7 @@ public:
      *  Get the GPIO Pin Number.
      *  @return GPIO Pin Number.
      */
-    uint16_t getPin()
+    uint32_t getPin()
     {
         return m_pinNumber;
     }
@@ -94,7 +94,7 @@ private:
     /**
      *  GPIO Pin Number.
      */
-    uint16_t m_pinNumber;
+    uint32_t m_pinNumber;
 
     /**
      *  Default Constructor.
