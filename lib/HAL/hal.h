@@ -64,7 +64,7 @@ public:
     /**
      *  Default Destructor
      */
-    virtual ~HAL()
+    ~HAL()
     {
     }
 
