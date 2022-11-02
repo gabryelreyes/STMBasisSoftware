@@ -78,7 +78,7 @@ public:
     /**
      *  Pin initialization using values provided on instancing.
      */
-    void init(void)
+    void init(void) const
     {
         GPIO_InitTypeDef GPIO_InitStruct = {0};
         GPIO_InitStruct.Pin = m_pinNumber;
@@ -95,7 +95,7 @@ public:
      *  Get the GPIO Port of the Pin.
      *  @return GPIO Port.
      */
-    GPIO_TypeDef *getPort()
+    GPIO_TypeDef *getPort() const
     {
         return m_port;
     }
@@ -104,7 +104,7 @@ public:
      *  Get the GPIO Pin Number.
      *  @return GPIO Pin Number.
      */
-    uint32_t getPin()
+    uint32_t getPin() const
     {
         return m_pinNumber;
     }
@@ -113,7 +113,7 @@ public:
      *  Get the GPIO Pin Mode.
      *  @return GPIO Pin Mode.
      */
-    uint32_t getMode()
+    uint32_t getMode() const
     {
         return m_pinMode;
     }
@@ -122,7 +122,7 @@ public:
      *  Get the GPIO Pin Pull.
      *  @return GPIO Pin Pull.
      */
-    uint32_t getPull()
+    uint32_t getPull() const
     {
         return m_pinPull;
     }
@@ -131,7 +131,7 @@ public:
      *  Get the GPIO Pin Speed.
      *  @return GPIO Pin Speed.
      */
-    uint32_t getSpeed()
+    uint32_t getSpeed() const
     {
         return m_pinSpeed;
     }
@@ -145,28 +145,33 @@ private:
     /**
      *  GPIO Pin Number.
      */
-    uint32_t m_pinNumber;
+    const uint32_t m_pinNumber;
 
     /**
      *  GPIO Pin Mode.
      */
-    uint32_t m_pinMode;
+    const uint32_t m_pinMode;
 
     /**
      *  GPIO Pin Pull.
      */
-    uint32_t m_pinPull;
+    const uint32_t m_pinPull;
 
     /**
      *  GPIO Pin Speed.
      */
-    uint32_t m_pinSpeed;
+    const uint32_t m_pinSpeed;
 
+private:
     /**
      *  Default Constructor.
      *  Empty constructor is not allowed.
      */
     PIN();
+
+    /* An instance shall not be copied. */
+    PIN(const PIN& Pin);
+    PIN& operator=(const PIN& Pin);
 };
 
 #endif /* PIN_H_ */

@@ -236,7 +236,7 @@ void LoopTask(void *argument)
   {
     // // HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_2);
     // gHal.toggleGPIO(HAL_TestBench::GPIO::LED_BLUE);
-    gHal.toggleGPIO(BMS_OK);
+    BMS_OK.getSpeed();
     osDelay(1000);
   }
   /* USER CODE END LoopTask */
